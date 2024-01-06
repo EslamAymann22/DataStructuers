@@ -106,6 +106,62 @@ void LinkedList::insert(int val, int pos)
 	}
 }
 
+void LinkedList::reverse(int start, int end)
+{
+	if (start > end)swap(start, end);
+	if (start == end)return;
+	if (start == 0 and end == size - 1) {
+		reverse();
+		return;
+	}
+	bool StartIsAHead = start == 0;
+	node* last = NULL;
+	node* cur = head;
+	node* next = head->nxt;
+
+	node* savestart;
+	node* savelast;
+	savelast = savestart = head;
+	while (start--) {
+		last = cur;
+		cur = cur->nxt;
+		end--;
+	}
+	savestart = cur;/////////////////////////
+	savelast = last;////////////////////////
+	next = cur->nxt;
+	end++;
+	while (end--) {
+		cur->nxt = last;
+		last = cur;
+		cur = next;
+		next = next->nxt;
+	}
+	//cur->nxt=
+	if (savelast != NULL)
+		savelast->nxt = cur;
+	if (savestart != NULL)
+		savestart->nxt = next;
+	if (StartIsAHead)head = cur;
+}
+
+void LinkedList::reverse()
+{
+
+	if (size < 2)return;
+	node* last = NULL;
+	node* cur = head;
+	node* next =  head->nxt;
+	while (next != NULL) {
+		cur->nxt = last;
+		last = cur;
+		cur = next;
+		next = next->nxt;
+	}
+	head = cur;
+	head->nxt = last;
+}
+
 void LinkedList::display()
 {
 	node* tmp = head;
@@ -115,6 +171,16 @@ void LinkedList::display()
 		cout << tmp->valu << ' ';
 		tmp = tmp->nxt;
 	}
+}
+
+bool LinkedList::seach(int val)
+{
+	node* cur = head;
+	while (cur != NULL) {
+		if (cur->valu == val)return true;
+		cur = cur->nxt;
+	}
+	return false;
 }
 
 void LinkedList::erase(int pos)
