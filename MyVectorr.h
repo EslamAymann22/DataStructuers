@@ -1,29 +1,31 @@
 #pragma once
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-
+template <class T>
 class MyVector {
 
 	int maxSize;
-	int* arr;
+	T* arr;
 	int size;
 	bool arrayNotCleared = 1;
 public:
-	MyVector(int sz, int init);
-	int& operator[](int idx);
+	MyVector(int sz, T init = 0);
+	T& operator[](int idx);
 	bool empty();
-	void insert(int val, int pos);
+	void insert(T val, int pos);
 	void erase(int pos);
 	void resize();
-	void push_back(int val);
+	void push_back(T val);
 	void pop_back();
 	int getSize();
 	int getCapacity();
-	int search(int val);
+	int search(T val);
 	void display();
 	void clear();
-	bool found(int val);
+	bool found(T val);
+	bool isFull();
+	void reverse(int start = 0, int end = -1);
 	~MyVector();
 
 };

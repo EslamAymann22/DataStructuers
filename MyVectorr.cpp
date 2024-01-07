@@ -1,6 +1,7 @@
 #include "MyVectorr.h"
 
-MyVector::MyVector(int sz, int init) {
+template<class T>
+MyVector<T>::MyVector(int sz, T init) {
 	maxSize = max(sz, 0);
 	sz = maxSize;
 	arr = new int[sz];
@@ -8,20 +9,20 @@ MyVector::MyVector(int sz, int init) {
 	size = sz;
 	arrayNotCleared = 1;
 }
- 
-int& MyVector::operator[](int idx) {
+template<class T>
+T& MyVector<T>::operator[](int idx) {
 	if (idx >= maxSize || idx < 0)
 		return cout << "\nERROR!!", arr[0];
 	return arr[idx];
 }
-
-bool MyVector::empty()
+template<class T>
+bool MyVector<T>::empty()
 {
 	return (size == 0);
 }
 
-
-void MyVector::insert(int val,int pos)
+template<class T>
+void MyVector<T>::insert(T val,int pos)
 {
 	if (size >= maxSize - 1)resize();
 	for (int i = size; i > pos; i--)
@@ -29,19 +30,19 @@ void MyVector::insert(int val,int pos)
 	arr[pos] = val;
 	size++;
 }
-
-void MyVector::erase(int pos)
+template<class T>
+void MyVector<T>::erase(int pos)
 {
 	for (int i = pos; i < size; i++)
 		arr[i] = arr[i + 1];
 	size--;
 }
-
-bool MyVector::isFull() {
+template<class T>
+bool MyVector<T>::isFull() {
 	return(maxSize >= 1e3);
 }
-
-void MyVector::reverse(int start, int end)
+template<class T>
+void MyVector<T>::reverse(int start, int end)
 {
 	if (end == -1)end = size;
 	if (start > end)swap(start, end);
@@ -49,7 +50,8 @@ void MyVector::reverse(int start, int end)
 		swap(arr[start++], arr[end--]);
 }
 
-void MyVector::resize() {
+template<class T>
+void MyVector<T>::resize() {
 	if (size < maxSize - 1)return;
 	if (isFull()) {
 		cout << "vector is full\n";
@@ -66,30 +68,34 @@ void MyVector::resize() {
 	arr = tmp;
 	arrayNotCleared = 1;
 }
-void MyVector::push_back(int val)
+template<class T>
+void MyVector<T>::push_back(T val)
 {
 	if (size >= maxSize - 1)resize();
 	arr[size++] = val;
 
 }
 
-void MyVector::pop_back()
+template<class T>
+void MyVector<T>::pop_back()
 {
 	if (empty())return cout << "\nERROR!!", void();
 	size--;
 }
-
-int MyVector::getSize()
+template<class T>
+int MyVector<T>::getSize()
 {
 	return size;
 }
 
-int MyVector::getCapacity()
+template<class T>
+int MyVector<T>::getCapacity()
 {
 	return maxSize;
 }
 
-int MyVector::search(int val)
+template<class T>
+int MyVector<T>::search(T val)
 {
 	for (int i = 0; i < size; i++) {
 		if (arr[i] == val)return i;
@@ -97,13 +103,15 @@ int MyVector::search(int val)
 	return -1;
 }
 
-void MyVector::display()
+template<class T>
+void MyVector<T>::display()
 {
 	for (int i = 0; i < size; i++)
 		cout << arr[i] << ' ';
 }
 
-void MyVector::clear()
+template<class T>
+void MyVector<T>::clear()
 {
 	if (arrayNotCleared)
 		delete[] arr;
@@ -111,12 +119,14 @@ void MyVector::clear()
 	size = maxSize = 0;
 }
 
-bool MyVector::found(int val)
+template<class T>
+bool MyVector<T>::found(T val)
 {
 	return (search(val) != -1);
 }
 
-MyVector::~MyVector() {
+template<class T>
+MyVector<T>::~MyVector() {
 
 	maxSize = size = 0;
 	if (arrayNotCleared)
