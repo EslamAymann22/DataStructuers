@@ -1,6 +1,7 @@
 #include "MyVectorr.h"
+
 MyVector::MyVector(int sz, int init) {
-	maxSize = max(sz, 1);
+	maxSize = max(sz, 0);
 	sz = maxSize;
 	arr = new int[sz];
 	for (int i = 0; i < sz; i++)arr[i] = init;
@@ -36,19 +37,34 @@ void MyVector::erase(int pos)
 	size--;
 }
 
+bool MyVector::isFull() {
+	return(maxSize >= 1e3);
+}
+
+void MyVector::reverse(int start, int end)
+{
+	if (end == -1)end = size;
+	if (start > end)swap(start, end);
+	while (start < end)
+		swap(arr[start++], arr[end--]);
+}
+
 void MyVector::resize() {
 	if (size < maxSize - 1)return;
+	if (isFull()) {
+		cout << "vector is full\n";
+		return;
+	}
 	maxSize++;
 	maxSize *= 2;
 	int* tmp = new int[maxSize];
 	if (arrayNotCleared) {
-		for (int i = 0; i < maxSize; i++)
+		for (int i = 0; i < size; i++)
 			tmp[i] = arr[i];
 		delete[] arr;
 	}
 	arr = tmp;
 	arrayNotCleared = 1;
-
 }
 void MyVector::push_back(int val)
 {
