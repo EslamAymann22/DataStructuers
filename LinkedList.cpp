@@ -114,7 +114,7 @@ void LinkedList::reverse(int start, int end)
 		reverse();
 		return;
 	}
-	bool StartIsAHead = start == 0;
+	bool StartIsAHead = (start == 0);
 	node* last = NULL;
 	node* cur = head;
 	node* next = head->nxt;
@@ -133,6 +133,7 @@ void LinkedList::reverse(int start, int end)
 	end++;
 	while (end--) {
 		cur->nxt = last;
+		if (!end)break;
 		last = cur;
 		cur = next;
 		next = next->nxt;

@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 #include"IDataStructures.h"
 using namespace std;
-class LinkedList /*:public IDataStructures*/{
+class LinkedList {
 public:
 	struct node {
 		int valu;
