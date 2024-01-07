@@ -203,9 +203,9 @@ void LinkedList::erase(int pos)
 	}
 }
 
-int LinkedList::operator[](int idx)//overload
+int& LinkedList::operator[](int idx)//overload
 {
-	if (idx >= size)return cout << "\nERROR!!", -1;//out of bounds 
+	if (idx >= size)return cout << "\nERROR!!", this->operator[](0);//out of bounds 
 	node* tmp = head;
 	while (idx--) {
 		tmp = tmp->nxt;

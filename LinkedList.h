@@ -22,7 +22,7 @@ public:
 	void display();
 	bool seach(int val);
 	void erase(int pos = -1);
-	int operator [](int idx);
+	int& operator [](int idx);
 	int get(int idx);
 	~LinkedList();
 };
