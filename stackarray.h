@@ -1,9 +1,11 @@
 #pragma once
 #include<iostream>
 using namespace std;
+
+template <class T>
 class stack
 {
-	int* arr;
+	T* arr;
 	int maxSize;
 	int topidx;
 	bool arrayNotCleared = 1;
@@ -13,9 +15,10 @@ public:
 	bool empty();
 	bool resize();
 	void clear();
-	void push(int val);
+	void push(T val);
 	void pop();
-	int top();
+	T top();
 	int size();
+	~stack();
 };
 
