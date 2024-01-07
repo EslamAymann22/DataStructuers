@@ -1,18 +1,20 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList() {
+template<class T>
+LinkedList<T>::LinkedList() {
 	head = new node;
 	head->nxt = NULL;
 	size = 0;
 	// head == first element
 }
-
-bool LinkedList::empty()
+template<class T>
+bool LinkedList<T>::empty()
 {
 	return (size == 0);
 }
 
-void LinkedList::push_front(int value)
+template<class T>
+void LinkedList<T>::push_front(T value)
 {
 	if (size == 0) {//fist element == head
 		head->valu = value;
@@ -26,7 +28,8 @@ void LinkedList::push_front(int value)
 	size++;//increase size 
 }
 
-void LinkedList::push_back(int value)
+template<class T>
+void LinkedList<T>::push_back(T value)
 {
 	node* tmp = head;
 
@@ -45,7 +48,8 @@ void LinkedList::push_back(int value)
 	size++;//increase size 
 }
 
-void LinkedList::erase_front()
+template<class T>
+void LinkedList<T>::erase_front()
 {
 	if (size == 0) {
 		cout << "\nERROR!!"; 
@@ -62,7 +66,8 @@ void LinkedList::erase_front()
 	size--;//decrease size
 }
 
-void LinkedList::erase_back()
+template<class T>
+void LinkedList<T>::erase_back()
 {
 	if (size == 0) {
 		cout << "\nERROR!!"; 
@@ -82,7 +87,8 @@ void LinkedList::erase_back()
 	size--;//decrease size
 }
 
-void LinkedList::insert(int val, int pos)
+template<class T>
+void LinkedList<T>::insert(T val, int pos)
 {
 	if (pos == -1 || pos == size) {
 		push_back(val);
@@ -106,7 +112,8 @@ void LinkedList::insert(int val, int pos)
 	}
 }
 
-void LinkedList::reverse(int start, int end)
+template<class T>
+void LinkedList<T>::reverse(int start, int end)
 {
 	if (start > end)swap(start, end);
 	if (start == end)return;
@@ -146,7 +153,8 @@ void LinkedList::reverse(int start, int end)
 	if (StartIsAHead)head = cur;
 }
 
-void LinkedList::reverse()
+template<class T>
+void LinkedList<T>::reverse()
 {
 
 	if (size < 2)return;
@@ -163,7 +171,8 @@ void LinkedList::reverse()
 	head->nxt = last;
 }
 
-void LinkedList::display()
+template<class T>
+void LinkedList<T>::display()
 {
 	node* tmp = head;
 	int sz = size;
@@ -174,7 +183,8 @@ void LinkedList::display()
 	}
 }
 
-bool LinkedList::search(int val)
+template<class T>
+bool LinkedList<T>::search(T val)
 {
 	node* cur = head;
 	while (cur != NULL) {
@@ -184,7 +194,8 @@ bool LinkedList::search(int val)
 	return false;
 }
 
-void LinkedList::erase(int pos)
+template<class T>
+void LinkedList<T>::erase(int pos)
 {
 	if (pos == -1 || pos == size - 1) {
 		erase_back();
@@ -204,7 +215,8 @@ void LinkedList::erase(int pos)
 	}
 }
 
-int& LinkedList::operator[](int idx)//overload
+template<class T>
+T& LinkedList<T>::operator[](int idx)//overload
 {
 	if (idx >= size)return cout << "\nERROR!!", this->operator[](0);//out of bounds 
 	node* tmp = head;
@@ -214,12 +226,14 @@ int& LinkedList::operator[](int idx)//overload
 	return tmp->valu;
 }
 
-int LinkedList::get(int idx)
+template<class T>
+T LinkedList<T>::get(int idx)
 {
 	return this->operator[](idx);
 }
 
-LinkedList::~LinkedList()
+template<class T>
+LinkedList<T>::~LinkedList()
 {
 	node* pre= head;
 	node* cur = head->nxt;

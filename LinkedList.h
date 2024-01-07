@@ -1,29 +1,31 @@
 #pragma once
-#include <bits/stdc++.h>
+#include <iostream>
 #include"IDataStructures.h"
 using namespace std;
+
+template<class T>
 class LinkedList {
 public:
 	struct node {
-		int valu;
+		T valu;
 		node* nxt;
 	};
 	int size = 0;
 	node* head;
 	LinkedList();
 	bool empty();
-	void push_front(int value);
-	void push_back(int value);
+	void push_front(T value);
+	void push_back(T value);
 	void erase_front();
 	void erase_back();
-	void insert(int val, int pos = -1);
+	void insert(T val, int pos = -1);
 	void reverse(int start , int end);
 	void reverse();
 	void display();
-	bool search(int val);
+	bool search(T val);
 	void erase(int pos = -1);
-	int& operator [](int idx);
-	int get(int idx);
+	T& operator [](int idx);
+	T get(int idx);
 	~LinkedList();
 };
 
