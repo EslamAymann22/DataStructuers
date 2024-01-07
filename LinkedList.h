@@ -20,7 +20,7 @@ public:
 	void reverse(int start , int end);
 	void reverse();
 	void display();
-	bool seach(int val);
+	bool search(int val);
 	void erase(int pos = -1);
 	int& operator [](int idx);
 	int get(int idx);

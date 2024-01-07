@@ -1,5 +1,4 @@
 #include "MyVectorr.h"
-
 MyVector::MyVector(int sz, int init) {
 	maxSize = max(sz, 1);
 	sz = maxSize;
@@ -8,7 +7,7 @@ MyVector::MyVector(int sz, int init) {
 	size = sz;
 	arrayNotCleared = 1;
 }
-
+ 
 int& MyVector::operator[](int idx) {
 	if (idx >= maxSize || idx < 0)
 		return cout << "\nERROR!!", arr[0];
@@ -19,7 +18,6 @@ bool MyVector::empty()
 {
 	return (size == 0);
 }
-
 
 
 void MyVector::insert(int val,int pos)
@@ -52,7 +50,6 @@ void MyVector::resize() {
 	arrayNotCleared = 1;
 
 }
-
 void MyVector::push_back(int val)
 {
 	if (size >= maxSize - 1)resize();
@@ -76,6 +73,14 @@ int MyVector::getCapacity()
 	return maxSize;
 }
 
+int MyVector::search(int val)
+{
+	for (int i = 0; i < size; i++) {
+		if (arr[i] == val)return i;
+	}
+	return -1;
+}
+
 void MyVector::display()
 {
 	for (int i = 0; i < size; i++)
@@ -87,6 +92,11 @@ void MyVector::clear()
 	arrayNotCleared = 0;
 	size = maxSize = 0;
 	delete[] arr;
+}
+
+bool MyVector::found(int val)
+{
+	return (search(val) != -1);
 }
 
 MyVector::~MyVector() {

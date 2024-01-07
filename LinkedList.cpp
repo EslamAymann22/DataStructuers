@@ -173,7 +173,7 @@ void LinkedList::display()
 	}
 }
 
-bool LinkedList::seach(int val)
+bool LinkedList::search(int val)
 {
 	node* cur = head;
 	while (cur != NULL) {
