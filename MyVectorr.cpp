@@ -75,7 +75,7 @@ void MyVector::push_back(int val)
 
 void MyVector::pop_back()
 {
-	if (size == 0)return cout << "\nERROR!!", void();
+	if (empty())return cout << "\nERROR!!", void();
 	size--;
 }
 
@@ -105,9 +105,10 @@ void MyVector::display()
 
 void MyVector::clear()
 {
+	if (arrayNotCleared)
+		delete[] arr;
 	arrayNotCleared = 0;
 	size = maxSize = 0;
-	delete[] arr;
 }
 
 bool MyVector::found(int val)
