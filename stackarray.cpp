@@ -1,10 +1,5 @@
 #include "stackarray.h"
-stack::stack()
-{
-	arr = new int[1];
-	maxSize = 1;
-	topidx = -1;
-}
+stack::stack():arr(new int[1]),maxSize(1),topidx(-1){}
 
 bool stack::isFull() {
 	return(maxSize >= 1024);// power of 2
