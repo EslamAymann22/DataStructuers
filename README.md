@@ -36,5 +36,13 @@
 	-every parent node has only one child either left or right 
 	-such trees are performance-wise same as linked list
  ![image](https://github.com/EslamAymann22/DataStructuers/assets/145445476/4d447b0f-751f-4c48-874d-d4a63bf1e663)
+## Binary Tree Traversal :
+ 	-per-order
+  		root left right
+	-In-order
+ 		left root right 
+	-post-order
+		left right root
+
 
  
