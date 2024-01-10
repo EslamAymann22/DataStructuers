@@ -28,5 +28,5 @@ public:
     node* search(int val, node* cur);
     bool search(int val);
     int GetSize();
-    int GetSuccessor(int val);//first element greater then val
+    int Successor(int val);//first element greater then val
 };

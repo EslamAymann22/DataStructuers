@@ -42,6 +42,11 @@ int BST::GetSize()
     return size;
 }
 
+int BST::Successor(int val)
+{
+    return 0;
+}
+
 void BST::InOrder(node* cur)
 {
     if (cur == NULL) {
@@ -76,11 +81,19 @@ void BST::remove(int val)
 {
     node* del = search(val, root);
     if (del == NULL)return;
-    if (del == root) {
-
+    if (del == root and (del->left==NULL||del->right==NULL)) {
+        if (del->left != NULL) {
+            root = del->left;
+            root->par = NULL;
+            delete del;
+        }
     }
     else  if (del->left != NULL and del->right != NULL) {// make a Successor root of subtree
-
+        node* cur = del->right;
+        while (cur->left != NULL)cur = cur->left;
+        int tmp = cur->val;// when call remove cur will be deleted
+        remove(cur->val);
+        del->val = tmp;
     }
     else if (del->left != NULL) {
         if (del->val > del->par->val) {
@@ -89,6 +102,7 @@ void BST::remove(int val)
         else {
             del->par->left = del->left;
         }
+        delete del;
     }
     else if (del->right != NULL) {
         if (del->val > del->par->val) {
@@ -97,16 +111,17 @@ void BST::remove(int val)
         else {
             del->par->left = del->right;
         }
+        delete del;
     }
     else {// leave
-         if (del->val > del->par->val) {
-             del->par->right = NULL;
-         }
-         else {
-             del->par->left = NULL;
+        if (del->val > del->par->val) {
+            del->par->right = NULL;
         }
+        else {
+            del->par->left = NULL;
+        }
+        delete del;
     }
-    delete del;
     size--;
 }
 
