@@ -98,18 +98,22 @@ void BST::remove(int val)
     else if (del->left != NULL) {
         if (del->val > del->par->val) {
             del->par->right = del->left;
+            del->left->par = del->par;
         }
         else {
             del->par->left = del->left;
+            del->left->par = del->par;
         }
         delete del;
     }
     else if (del->right != NULL) {
         if (del->val > del->par->val) {
             del->par->right = del->right;
+            del->right->par = del->par;
         }
         else {
             del->par->left = del->right;
+            del->right->par = del->par;
         }
         delete del;
     }
