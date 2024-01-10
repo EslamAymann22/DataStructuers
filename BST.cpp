@@ -44,7 +44,22 @@ int BST::GetSize()
 
 int BST::Successor(int val)
 {
-    return 0;
+    node* cur = search(val, root);
+    if (cur == NULL)return -1;
+    if (cur->right != NULL) {
+        cur = cur->right;
+        while (cur->left != NULL)cur = cur->left;
+        return cur->val;
+    }
+    else if (cur->par == NULL) {
+        return -1;
+    }
+    else {
+        if (cur->par->val > cur->val)return cur->par->val;
+        while (cur->par != NULL and cur->par->val <= cur->val)cur = cur->par;
+        if (cur->par == NULL)return -1;
+        return cur->par->val;
+    }
 }
 
 void BST::InOrder(node* cur)
