@@ -1,18 +1,16 @@
 #include "stackarray.h"
 
 
-//stack::stack():arr(new T[1]),maxSize(1),topidx(-1){}
 
-template<class T>
-stack<T>::stack():arr(new T[1]), maxSize(1), topidx(-1){}
+stackarray::stackarray():arr(new int[1]), maxSize(1), topidx(-1){}
 
-template<class T>
-bool stack<T>::isFull() {
+
+bool stackarray::isFull() {
 	return(maxSize >= 1024);// power of 2
 }
 
-template<class T>
-bool stack<T>::resize() {
+
+bool stackarray::resize() {
 	if (topidx < maxSize - 1)return 1;
 	if (isFull()) {
 		cout << "Stack is full\n";
@@ -20,7 +18,7 @@ bool stack<T>::resize() {
 	}
 	maxSize++;
 	maxSize *= 2;
-	T* tmp = new T[maxSize];
+	int* tmp = new int[maxSize];
 	if (arrayNotCleared) {
 		for (int i = 0; i <= topidx; i++)
 			tmp[i] = arr[i];
@@ -30,25 +28,25 @@ bool stack<T>::resize() {
 	arrayNotCleared = 1;
 	return 1;
 }
-template<class T>
-void stack<T>::push(T val)
+
+void stackarray::push(int val)
 {
 	if (resize())
 		arr[++topidx] = val;
 }
-template<class T>
-bool stack<T>::empty() {
+
+bool stackarray::empty() {
 	return (topidx == -1);
 }
-template<class T>
-void stack<T>::pop() {
+ 
+void stackarray::pop() {
 	if (empty()) {
 		cout << "Underflow!!\n";
 	}
 	else topidx--;
 }
-template<class T>
-T stack<T>::top()
+
+int stackarray::top()
 {
 	if (empty()) {
 		cout << "OVERFLOW!!\n";
@@ -57,20 +55,20 @@ T stack<T>::top()
 	else
 		return arr[topidx];
 }
-template<class T>
-int stack<T>::size()
+
+int stackarray::size()
 {
 	return(topidx + 1);
 }
-template<class T>
-stack<T>::~stack()
+
+stackarray::~stackarray()
 {
 	if (arrayNotCleared)
 		delete[] arr;
 	arrayNotCleared = maxSize = 0;
 }
-template<class T>
-void stack<T>::clear() {
+
+void stackarray::clear() {
 	if (arrayNotCleared)
 		delete[] arr;
 	topidx = -1;

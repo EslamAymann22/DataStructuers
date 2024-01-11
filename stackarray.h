@@ -2,23 +2,22 @@
 #include<iostream>
 using namespace std;
 
-template <class T>
-class stack
+class stackarray
 {
-	T* arr;
+	int* arr;
 	int maxSize;
 	int topidx;
 	bool arrayNotCleared = 1;
 public:
-	stack();
+	stackarray();
 	bool isFull();
 	bool empty();
 	bool resize();
 	void clear();
-	void push(T val);
+	void push(int val);
 	void pop();
-	T top();
+	int top();
 	int size();
-	~stack();
+	~stackarray();
 };
 

@@ -32,4 +32,6 @@ public:
     int Predecessor(int val);//first element smaler  than val
     int GetMax(node* cur = NULL);
     int GetMin(node* cur = NULL);
+    void clear(node*cur=NULL);
+    ~BST();
 };

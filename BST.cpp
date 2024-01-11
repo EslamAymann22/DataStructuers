@@ -96,6 +96,8 @@ int BST::GetMin(node* cur)
     return cur->val;
 }
 
+
+
 void BST::InOrder(node* cur)
 {
     if (cur == NULL) {
@@ -192,4 +194,21 @@ node* BST::search(int val, node* cur) {
     else {
         return search(val, cur->left);
     }
+}
+
+void BST::clear(node* cur)
+{
+    if (cur == NULL)cur = root;
+    if (cur->left)clear(cur->left);
+    if (cur->right)clear(cur->right);
+    if (cur != root)
+        delete cur;
+    else {
+        root->left = root->right = NULL;
+    }
+}
+BST::~BST()
+{
+    clear();
+    delete root;
 }
