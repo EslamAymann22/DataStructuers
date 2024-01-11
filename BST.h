@@ -18,15 +18,18 @@ class BST {
     int size;
 public:
     BST(int val);
-    void insert(int val);//
-    void PreOrder(node* cur = NULL);//
-    void InOrder(node* cur = NULL);//
-    void PostOrder(node* cur = NULL);//
+    void insert(int val);
+    void PreOrder(node* cur = NULL);
+    void InOrder(node* cur = NULL);
+    void PostOrder(node* cur = NULL);
     void Display();
     node GetRoot();
     void remove(int val);
     node* search(int val, node* cur);
     bool search(int val);
     int GetSize();
-    int Successor(int val);//first element greater then val
+    int Successor(int val);//first element greater than val
+    int Predecessor(int val);//first element smaler  than val
+    int GetMax(node* cur = NULL);
+    int GetMin(node* cur = NULL);
 };

@@ -47,19 +47,53 @@ int BST::Successor(int val)
     node* cur = search(val, root);
     if (cur == NULL)return -1;
     if (cur->right != NULL) {
-        cur = cur->right;
-        while (cur->left != NULL)cur = cur->left;
-        return cur->val;
+        return (GetMin(cur->right));
     }
     else if (cur->par == NULL) {
         return -1;
     }
     else {
+        // left child
         if (cur->par->val > cur->val)return cur->par->val;
+        // else right child
         while (cur->par != NULL and cur->par->val <= cur->val)cur = cur->par;
         if (cur->par == NULL)return -1;
         return cur->par->val;
     }
+}
+
+int BST::Predecessor(int val)
+{
+    node* cur = search(val, root);
+    if (cur == NULL)return -1;
+    if (cur->left != NULL) {
+        return (GetMax(cur->left));
+    }
+    else if (cur->par == NULL) {
+        return -1;
+    }
+    else {
+        // left child
+        if (cur->par->val < cur->val)return cur->par->val;
+        // else right child
+        while (cur->par != NULL and cur->par->val > cur->val)cur = cur->par;
+        if (cur->par == NULL)return -1;
+        return cur->par->val;
+    }
+}
+
+int BST::GetMax(node* cur)
+{
+    if (cur == NULL)cur = root;
+    while (cur->right != NULL)cur = cur->right;
+    return cur->val;
+}
+
+int BST::GetMin(node* cur)
+{
+    if (cur == NULL)cur = root;
+    while (cur->left != NULL)cur = cur->left;
+    return cur->val;
 }
 
 void BST::InOrder(node* cur)
