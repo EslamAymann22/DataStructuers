@@ -4,7 +4,7 @@ template<class T>
 MyVector<T>::MyVector(int sz, T init) {
 	maxSize = max(sz, 0);
 	sz = maxSize;
-	arr = new int[sz];
+	arr = new T[sz];
 	for (int i = 0; i < sz; i++)arr[i] = init;
 	size = sz;
 	arrayNotCleared = 1;
@@ -39,7 +39,7 @@ void MyVector<T>::erase(int pos)
 }
 template<class T>
 bool MyVector<T>::isFull() {
-	return(maxSize >= 1e3);
+	return(maxSize >= 1e6);
 }
 template<class T>
 void MyVector<T>::reverse(int start, int end)
@@ -59,7 +59,7 @@ void MyVector<T>::resize() {
 	}
 	maxSize++;
 	maxSize *= 2;
-	int* tmp = new int[maxSize];
+	T* tmp = new T[maxSize];
 	if (arrayNotCleared) {
 		for (int i = 0; i < size; i++)
 			tmp[i] = arr[i];
