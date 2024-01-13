@@ -19,7 +19,7 @@ public:
 	bool empty();
 	int Getsize();
 	void pop();
-	int top();
+	T top();
 	void clear();
 	~stackLinkedList();
 };
@@ -61,7 +61,7 @@ inline void stackLinkedList<T>::pop() {
 }
 
 template<class T>
-inline int stackLinkedList<T>::top() {
+inline T stackLinkedList<T>::top() {
 	if (size == 0)return cout << "Stack is enpty\n", -1;
 	return start->nxt->val;
 }
