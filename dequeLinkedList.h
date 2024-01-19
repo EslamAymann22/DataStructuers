@@ -11,8 +11,8 @@ public:
 	public:
 		node* nxt, * prv;
 		T val;
-		node(T val = 0, node* nxt = NULL, node* prv = NULL):
-		val(val),nxt(nxt),prv(prv) {}
+		node(T val = 0, node* nxt = NULL, node* prv = NULL) :
+			val(val), nxt(nxt), prv(prv) {}
 	};
 
 	int size;
@@ -27,6 +27,9 @@ public:
 	void display();
 	T front();
 	T back();
+	void clear();
+	~dequeLinkedList();
+
 };
 
 template<class T>
@@ -59,7 +62,7 @@ inline int dequeLinkedList<T>::GetSize()
 template<class T>
 inline bool dequeLinkedList<T>::empty()
 {
-	return size==0;
+	return size == 0;
 }
 
 template<class T>
@@ -77,7 +80,7 @@ inline void dequeLinkedList<T>::push_front(T val)
 		head->nxt = tmp;
 	}
 	size++;
-	
+
 }
 
 template<class T>
@@ -104,7 +107,7 @@ inline void dequeLinkedList<T>::pop_front()
 		cout << "deque is empty\n";
 		return;
 	}
-	node*tmp = head->nxt;
+	node* tmp = head->nxt;
 	head->nxt = tmp->nxt;
 	head->nxt->prv = head;
 	delete tmp;
@@ -130,10 +133,32 @@ inline void dequeLinkedList<T>::display()
 {
 	node* tmp = head->nxt;
 	while (tmp != rear) {
-		cout << tmp->val << ' ';
+		cout << tmp->val;
 		tmp = tmp->nxt;
 	}
 }
+
+template<class T>
+inline void dequeLinkedList<T>::clear()
+{
+	node* tmp = head->nxt;
+	node* cur = tmp;
+	while (cur != rear) {
+		tmp = cur;
+		cur = cur->nxt;
+		delete tmp;
+	}
+	head->nxt = rear;
+}
+
+template<class T>
+dequeLinkedList<T>::~dequeLinkedList()
+{
+	clear();
+	delete head;
+	delete rear;
+}
+
 template<class T>
 inline T dequeLinkedList<T>::front()
 {
@@ -149,4 +174,3 @@ inline T dequeLinkedList<T>::back()
 	return rear->prv->val;
 
 }
-
