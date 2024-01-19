@@ -134,4 +134,19 @@ inline void dequeLinkedList<T>::display()
 		tmp = tmp->nxt;
 	}
 }
+template<class T>
+inline T dequeLinkedList<T>::front()
+{
+	if (!size)return -1;
+	return head->nxt->val;
+
+}
+
+template<class T>
+inline T dequeLinkedList<T>::back()
+{
+	if (!size)return -1;
+	return rear->prv->val;
+
+}
 
