@@ -25,6 +25,8 @@ public:
 	void pop_front();
 	void pop_back();
 	void display();
+	T front();
+	T back();
 };
 
 template<class T>
