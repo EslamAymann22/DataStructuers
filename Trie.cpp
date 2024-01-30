@@ -4,12 +4,12 @@ class Trie::node {
 public:
 	char x;
 	int fr;
-	int IsLeave;
+	int IsLeaf;
 	node* nxt[26];
 	node() {
 		memset(nxt, 0, sizeof nxt);
 		fr = 0;
-		IsLeave = 0;
+		IsLeaf = 0;
 	}
 };
 Trie::Trie() {
@@ -33,7 +33,7 @@ void Trie::insert(string s)
 			i++;
 		}
 		cur->fr++;
-		if (i == n)cur->IsLeave++;
+		if (i == n)cur->IsLeaf++;
 	}
 }
 
@@ -51,7 +51,7 @@ int Trie::Find(string s)
 			return 0;
 		}
 	}
-	return cur->IsLeave;
+	return cur->IsLeaf;
 	
 }
 
@@ -82,7 +82,7 @@ void Trie::erase(string s) {
 		}
 		i++;
 	}
-	if (cur->IsLeave)cur->IsLeave--;
+	if (cur->IsLeaf)cur->IsLeaf--;
 	if (cur->fr == 0 and cur != head)delete cur;
 }
 
